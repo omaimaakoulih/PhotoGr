@@ -1,0 +1,12 @@
+ion-tab-bar{
+    --background:white;
+}
+ion-icon{
+    color: #413543;
+    &:active{
+        color:black;
+    }
+    &:focus{
+        color:black;
+    }
+}

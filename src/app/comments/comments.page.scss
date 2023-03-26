@@ -1,0 +1,19 @@
+.description{
+    width:95%;
+    display: flex;
+    flex-direction: row;
+    img{
+        width:30px;
+        height:30px;
+        border-radius: 50%;
+        margin-top: 10px;
+        margin-left: 5px;
+    }
+    .text{
+        padding: 10px;
+        text-align: justify;
+    }
+}
+ion-toolbar{
+    --background:white;
+}

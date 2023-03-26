@@ -1,0 +1,30 @@
+ion-fab-button{
+    --background:#413543;
+}
+
+
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+    display: flex;
+    flex-flow: column-reverse;
+  }
+
+ion-card-subtitle {
+    ion-item{
+        img{
+            width:30px;
+            height:30px;
+        }
+        
+    }
+    ion-label{
+        font-size: x-small;
+        font-weight: lighter;
+    }
+    
+}
+ion-icon{
+    width:25px;
+    height:25px;
+    color:gray;
+}

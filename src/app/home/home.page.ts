@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private router: Router,private route: ActivatedRoute) {}
+  onSignIn(){
+    this.router.navigate(['login']);
+  }
+  onSignUp(){
+    this.router.navigate(['signup']);
+  }
 
 }
