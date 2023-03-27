@@ -1,3 +1,58 @@
+ion-toolbar{
+    --background:white;
+    ion-icon{
+        color:black;
+    }
+}
+
 ion-fab-button{
     --background:#413543;
 }
+
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+    display: flex;
+    flex-flow: column-reverse;
+  }
+
+  #topCard{
+    margin-top: 50px;
+  } 
+  .infoCard{
+    width:90px;
+    
+    text-align: center;
+    padding-top: 5px;
+    .number{
+        font-weight: bold;
+        font-size:20px;
+    }
+    .type{
+        color:gray;
+    }
+    p{
+        text-align: center;
+    }
+  } 
+  .infos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  ion-col {
+    
+    border: solid 1px #fff;
+    width:100px;
+   
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    img{
+        border-radius:15px;
+    }
+  }
+  .myPosts{
+    padding:20px;
+  }
+ 

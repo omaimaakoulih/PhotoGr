@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
 
   onSingnIn(){
     this.dbService.signIn(this.loginForm.value.email, this.loginForm.value.password);
-
+    this.router.navigate(['tabs']);
   }
 
  signUp(){

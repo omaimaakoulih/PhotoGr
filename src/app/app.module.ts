@@ -14,7 +14,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import {provideAuth, getAuth} from '@angular/fire/auth';
 
-import { CutePipe } from './pipes/cutePipe';
+
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {getStorage, provideStorage} from '@angular/fire/storage';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +28,9 @@ import { CutePipe } from './pipes/cutePipe';
             AngularFireModule,
             provideFirebaseApp(()=> initializeApp(environment.firebaseConfig)),
             provideAuth(()=> getAuth()),
-          ReactiveFormsModule,
+            provideFirestore(() => getFirestore()),
+            provideStorage(()=> getStorage()),
+            ReactiveFormsModule,
           
         ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, {provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig}],

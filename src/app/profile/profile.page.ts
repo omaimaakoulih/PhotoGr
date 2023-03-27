@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import { GlobalServiceService } from '../services/global-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  user!: firebase.User;
+  constructor(private auth:AngularFireAuth, private globalService:GlobalServiceService) {
+    this.globalService.getCurrentUser().subscribe((data) => {
+      if(data){
+        this.user = data;
+      }
+    });
+   }
 
   ngOnInit() {
+    
   }
   onClick(){
     console.log("clicked !");

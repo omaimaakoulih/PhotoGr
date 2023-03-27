@@ -27,10 +27,10 @@
           </ion-card-content>
           
         
-          <ion-button fill="clear">
+          <ion-button fill="clear" (click)="onLike()">
             <ion-icon name="heart-outline"></ion-icon>
           </ion-button>2
-          <ion-button fill="clear">
+          <ion-button fill="clear" (click)="comment()">
             <ion-icon name="chatbubbles-outline"></ion-icon>
           </ion-button>
         </ion-card>
@@ -100,10 +100,42 @@
 
   <!-- ion floating button -->
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button>
+    <ion-fab-button id="open-modal">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
-    
   </ion-fab>
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-title>New publication</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h3 style="margin-top: 50px;">Share your creativity with other photographers!</h3>
+        <div class="imageInfos">
+          <div class="formItem">
+            <button class="btn btn-primary" type="button" (click)="inputImage.click()">Upload Image</button>
+            <input type="file" #inputImage hidden (change)="onSelectImage($event)" [(ngModel)]='image' [ngModelOptions]="{standalone: true}"/>
+          </div>
+          <div class="formItem">
+            <label for="small" class="form-label">Description <span style="color:red;">*</span>: </label>
+            <textarea class="form-control text2" id="small" placeholder="Description" [(ngModel)]='description' [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+        </div>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
 

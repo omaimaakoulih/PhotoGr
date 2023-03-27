@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="arrow-back-outline"></ion-icon>
+    <ion-icon name="arrow-back-outline" (click)="back()"></ion-icon>
     <ion-title>comments</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,5 +13,28 @@
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam deserunt repellendus voluptatibus at. <br/>Dolor est, quisquam cum sit illo exercitationem ex odio odit perspiciatis itaque repellendus obcaecati molestiae doloremque tenetur voluptatum molestias velit aperiam, <br/>beatae dolorum fugiat? Dolorem, cupiditate tempore repudiandae culpa officia minus rerum, excepturi,<br/> praesentium voluptates est atque nostrum omnis. Velit possimus sequi hic facilis ea tempora, eius, placeat ratione accusamus deserunt perspiciatis, quod quisquam esse. Consequuntur, eum eaque deleniti provident autem veritatis iste, doloribus quo mollitia, laudantium fugit corporis libero saepe? Ratione atque quaerat sapiente voluptatibus voluptate quo illum saepe maiores excepturi sunt sed, facere incidunt nihil!</p>
     </div>
   </div>
+  
+  <div class="comments">
+    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    <div class="text">
+      <p>user Name <span style="color:#474A56">time</span></p>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+  </div>
 
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer">
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    
+      <ion-item>
+        <ion-input [clearOnEdit]="true" placeholder="Add a comment..."></ion-input>
+      </ion-item>
+      <ion-button fill="clear" (click)="onSendComment()">
+        <ion-icon name="send-outline"></ion-icon>
+      </ion-button>
+    </div>
+    
+  </ion-toolbar>
+</ion-footer>
