@@ -1,15 +1,16 @@
 export class Post{
 
-    public likes!:number;
-    public date!:number;
-    public image!:string;
+    
+    
 
     constructor(
         public userId:string,
-        public description:string
+        public description:string,
+        public date:number,
+        public likes:number,
+        public image?:string
     ){
-        this.likes=0;
-        this.date = Date.now();
+       
         
     }
 }

@@ -16,7 +16,7 @@ ion-card-header.ios {
   }
 
   #topCard{
-    margin-top: 50px;
+    margin-top: 30px;
   } 
   .infoCard{
     width:90px;
@@ -54,5 +54,11 @@ ion-card-header.ios {
   }
   .myPosts{
     padding:20px;
+    h5{
+      color:rgb(27, 24, 24);
+    }
   }
  
+  .bottomIcon{
+    margin-right: 10px;
+  }

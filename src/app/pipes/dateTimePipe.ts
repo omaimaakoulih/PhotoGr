@@ -19,19 +19,19 @@ export class DateTimePope implements PipeTransform{
         const diff = now - then;
 
         if (diff < this.timeDiffs.minute) {
-            return 'A few seconds ago';
+            return 'few seconds';
           } else if (diff < this.timeDiffs.hour) {
-            return 'A few minutes ago';
+            return '1h';
           } else if (diff < this.timeDiffs.day) {
-            return 'A few hours ago';
+            return '1 day';
           } else if (diff < this.timeDiffs.week) {
-            return 'A few days ago';
+            return 'few days';
           } else if (diff < this.timeDiffs.month) {
-            return 'A few weeks ago';
+            return 'few weeks';
           } else if (diff < this.timeDiffs.year) {
-            return 'A few months ago';
+            return 'few months';
           } else {
-            return 'More than a year ago';
+            return 'years ago';
           }
           
     }

@@ -5,7 +5,7 @@
   </div>
   <div class="posts">
     <ion-list lines="inset">
-      <ion-item>
+      <ion-item *ngFor="let p of posts">
         <ion-card>
           <ion-card-header>
             
@@ -15,15 +15,15 @@
                   <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                 </ion-avatar>
                 <ion-label>
-                  Avatar Item
+                  {{user.displayName}} 
                 </ion-label>
               </ion-item>
             </ion-card-subtitle>
           </ion-card-header>
         
           <ion-card-content>
-            <img src="../../assets/logo.png" alt="">
-            <p>{{"Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, officiis!" | truncate:50 }}</p>
+            <img [src]="p.image" alt="">
+            <p class="descriptionimage">{{p.description | truncate:50 }}</p>
           </ion-card-content>
           
         
@@ -33,8 +33,12 @@
           <ion-button fill="clear" (click)="comment()">
             <ion-icon name="chatbubbles-outline"></ion-icon>
           </ion-button>
+          <ion-button fill="clear" (click)="onSave()">
+            <ion-icon name="bookmark-outline"></ion-icon>
+          </ion-button>
         </ion-card>
       </ion-item>
+      <!--
       <ion-item>
         <ion-card>
           <ion-card-header>
@@ -62,6 +66,9 @@
           </ion-button>2
           <ion-button fill="clear">
             <ion-icon name="chatbubbles-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear">
+            <ion-icon name="bookmark-outline"></ion-icon>
           </ion-button>
         </ion-card>
       </ion-item>
@@ -93,8 +100,12 @@
           <ion-button fill="clear">
             <ion-icon name="chatbubbles-outline"></ion-icon>
           </ion-button>
+          <ion-button fill="clear">
+            <ion-icon name="bookmark-outline"></ion-icon>
+          </ion-button>
         </ion-card>
       </ion-item>
+    -->
     </ion-list>
   </div>
 

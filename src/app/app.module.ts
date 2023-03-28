@@ -19,7 +19,6 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {getStorage, provideStorage} from '@angular/fire/storage';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,

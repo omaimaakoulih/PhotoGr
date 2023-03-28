@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GlobalServiceService } from '../services/global-service.service';
+import { Platform } from '@ionic/angular'; // to refresh the page
+
+
+import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-comments',
@@ -8,11 +13,35 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CommentsPage implements OnInit {
 
-  constructor(private router:Router, private rout:ActivatedRoute) { }
+  comment!:string;
+  user!:firebase.User;
+  progress =0;
+
+  constructor(private router:Router, private rout:ActivatedRoute, private globalSevice:GlobalServiceService, private platform:Platform) { 
+    this.globalSevice.getCurrentUser().subscribe((data) => {
+      if(data){
+        this.user = data;
+        console.log(this.user.uid);
+      }
+    })
+  }
 
   ngOnInit() {
   }
-  onSendComment(){
+
+  // use the post id as onSendComment() method argument 
+   onSendComment(){
+
+     setInterval(() => {
+      this.progress += 0.01;
+      if (this.progress > 1) {
+        this.platform.ready().then(()=>{
+          window.location.reload();
+        })
+      }
+    }, 50);
+
+    
 
   }
   back(){
