@@ -1,0 +1,33 @@
+<ion-item>
+  <ion-card>
+    <ion-card-header>
+      
+      <ion-card-subtitle>
+        <ion-item >
+          <ion-avatar slot="start">
+            <img alt="Silhouette of a person's head" [src]="userPost.image" />
+          </ion-avatar>
+          <ion-label >
+            {{userPost.userName}} <span class="postDate">{{p.date | transDate}}</span>
+          </ion-label>
+        </ion-item>
+      </ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <img [src]="p.image" alt="">
+      <p class="descriptionimage">{{p.description | truncate:50 }}</p>
+    </ion-card-content>
+    
+  
+    <ion-button fill="clear" (click)="onLike(p,user.uid)">
+      <ion-icon name="heart-outline"></ion-icon>
+    </ion-button>{{p.likes}}
+    <ion-button fill="clear" (click)="comment(p)">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" (click)="onSave(p, user.uid)">
+      <ion-icon [name]="p.saved"></ion-icon> <!--- bookmark-outline -->
+    </ion-button>
+  </ion-card>
+</ion-item>

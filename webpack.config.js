@@ -11,17 +11,13 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.json'],
     fallback: {
-        "querystring": require.resolve("querystring-es3"),
-        "crypto": require.resolve("crypto-browserify"),
-         stream: require.resolve('stream-browserify'),
-        "url": require.resolve("url/"),
-        "https": require.resolve("https-browserify"),
-        "http": require.resolve("stream-http"),
-        "path": require.resolve("path-browserify"),
-        "util": require.resolve("util/"),
-        "assert": require.resolve("assert/"),
-        "zlib": require.resolve("browserify-zlib"),
-        "os":   require.resolve("os-browserify/browser")
+      "crypto": require.resolve("crypto-browserify"), 
+      "stream": require.resolve("stream-browserify"), 
+      "assert": require.resolve("assert"), 
+      "http": require.resolve("stream-http"), 
+      "https": require.resolve("https-browserify"), 
+      "os": require.resolve("os-browserify"), 
+      "url": require.resolve("url") 
       }
   },
   module: {

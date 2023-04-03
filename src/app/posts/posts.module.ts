@@ -8,14 +8,19 @@ import { PostsPageRoutingModule } from './posts-routing.module';
 
 import { PostsPage } from './posts.page';
 import { CutePipe } from '../pipes/cutePipe';
-
+import { DateTimePipeMod } from '../pipes/dateTimePipemod.module';
+import { CutePipeMod } from '../pipes/cutePipeMod.module';
+import { UserPostComponent } from '../user-post/user-post.component';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PostsPageRoutingModule
+    PostsPageRoutingModule,
+    DateTimePipeMod,
+    CutePipeMod
+
   ],
-  declarations: [PostsPage, CutePipe]
+  declarations: [PostsPage,UserPostComponent]
 })
 export class PostsPageModule {}

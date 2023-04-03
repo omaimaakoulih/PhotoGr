@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
-    path: 'comments',
+    path:'comments/:post',
     loadChildren: () => import('./comments/comments.module').then( m => m.CommentsPageModule)
   },
   {

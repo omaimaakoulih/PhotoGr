@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CommentsPageRoutingModule } from './comments-routing.module';
 
 import { CommentsPage } from './comments.page';
+import { DateTimePipeMod } from '../pipes/dateTimePipemod.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CommentsPageRoutingModule
+    CommentsPageRoutingModule,
+    DateTimePipeMod
   ],
   declarations: [CommentsPage]
 })

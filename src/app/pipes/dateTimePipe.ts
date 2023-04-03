@@ -1,8 +1,10 @@
 import { Pipe , PipeTransform} from "@angular/core";
 
+@Pipe({
+  name: 'transDate'
+})
 
-
-export class DateTimePope implements PipeTransform{
+export class DateTimePipe implements PipeTransform{
     timeDiffs = {
         minute: 60 * 1000,
         hour: 60 * 60 * 1000,
@@ -13,7 +15,7 @@ export class DateTimePope implements PipeTransform{
       };
 
 
-    transform(value: string | Date) {
+    transform(value: string | number |Date) {
         const now = Date.now();
         const then = new Date(value).getTime();
         const diff = now - then;

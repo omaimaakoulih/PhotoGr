@@ -21,12 +21,7 @@ export class GlobalServiceService {
   constructor(private fauth:AngularFireAuth, private firestore: AngularFirestore, private db:AngularFireDatabase) {
 
     firebase.initializeApp(environment.firebaseConfig);
-    /*const admin = require('firebase-admin');
-    const serviceAccount = require('../../assets/json/photogr-9e160-firebase-adminsdk-6fqdz-d2dca7a40b.json');
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount)
-    // });*/
+   
    }
 
   getCurrentUser(): Observable<firebase.User | null> {
@@ -44,21 +39,7 @@ export class GlobalServiceService {
     );
   }
 
-  /*getUserById(uid:string){
 
-    admin.auth().getUser(uid)
-    .then(function(userRecord) {
-      // User found.
-      console.log("User found:", userRecord.toJSON());
-    })
-    .catch(function(error) {
-      // Error fetching user.
-      console.log("Error fetching user data:", error);
-    });
-  
-
-  
-}*/
 
  
 

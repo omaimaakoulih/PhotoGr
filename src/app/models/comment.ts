@@ -1,10 +1,9 @@
 export class Comment{
 
-   
-    public date!:number;
     
+    public date!:number;
     constructor(public text:string,
-                public idPots:string,
+                public idPot:string,
                 public iduserComment:string){
                     
                     this.date = Date.now();

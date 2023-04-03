@@ -18,21 +18,22 @@ import {provideAuth, getAuth} from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {getStorage, provideStorage} from '@angular/fire/storage';
+import {UserPostComponent} from './user-post/user-post.component';
+import { DateTimePipeMod } from "./pipes/dateTimePipemod.module";
+import { CutePipeMod } from './pipes/cutePipeMod.module';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-            FormsModule,
-            AngularFireAuthModule,
-            AngularFireModule,
-            provideFirebaseApp(()=> initializeApp(environment.firebaseConfig)),
-            provideAuth(()=> getAuth()),
-            provideFirestore(() => getFirestore()),
-            provideStorage(()=> getStorage()),
-            ReactiveFormsModule,
-          
-        ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, {provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig}],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig }],
+    bootstrap: [AppComponent],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+        FormsModule,
+        AngularFireAuthModule,
+        AngularFireModule,
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        provideStorage(() => getStorage()),
+        ReactiveFormsModule, DateTimePipeMod, CutePipeMod]
 })
 export class AppModule {}
