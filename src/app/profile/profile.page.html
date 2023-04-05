@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>User Name</ion-title>
+    <ion-title *ngIf="user">{{user.displayName}}</ion-title>
     <ion-buttons slot="end">
       <ion-button [strong]="true" id="open-modal">
         <ion-icon name="list-outline"></ion-icon>
@@ -12,16 +12,16 @@
     <ion-card id="topCard">
       <div class="userInfos">
         <ion-item>
-          <ion-avatar slot="start">
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          <ion-avatar slot="start" *ngIf="user">
+            <img alt="Silhouette of a person's head" [src]="user.photoURL" />
           </ion-avatar>
           <div class="infos">
             <ion-card color="light" class="infoCard">
-              <p class="number">44</p>
+              <p class="number" *ngIf="postsInfo">{{postsInfo[0]}}</p>
               <p class="type">posts</p>
             </ion-card>
             <ion-card color="light" class="infoCard">
-              <p class="number">2k</p>
+              <p class="number" *ngIf="postsInfo">{{postsInfo[1]}}</p>
               <p class="type">likes</p>
             </ion-card>
           </div>
@@ -33,18 +33,16 @@
       <div class="myPosts">
         <h5><ion-icon name="grid-outline"></ion-icon> Gallery</h5>
         <ion-grid [fixed]="true">
-          <ion-row>
-            <ion-col>
-              <img src="../../assets/image1.jpg" alt="">
+          <ion-row *ngFor="let i of range(postsInfo[0])">
+            <ion-col *ngIf="posts[2*i]">
+              <img [src]="posts[2*i].image" alt="">
             </ion-col>
-            <ion-col>
-              <img src="../../assets/image4.jpg" alt="">
+            <ion-col *ngIf="posts[2*i+1]">
+              <img [src]="posts[2*i+1].image" alt="">
             </ion-col>
-            
           </ion-row>
-        </ion-grid>
-        <ion-grid [fixed]="true">
-          <ion-row>
+          
+         <!--- <ion-row>
             <ion-col>
               <img src="../../assets/image1.jpg" alt="">
             </ion-col>
@@ -52,8 +50,9 @@
               <img src="../../assets/omaima.jpeg" alt="">
             </ion-col>
             
-          </ion-row>
+          </ion-row>-->
         </ion-grid>
+        
       </div>
      
     
@@ -85,7 +84,7 @@
         </ion-item>
         <ion-item lines="none">
           <ion-icon name="log-out-outline"></ion-icon>
-          <ion-label>Log Out</ion-label>
+          <ion-label (click)="logout()">Log Out</ion-label>
         </ion-item>
       </ion-content>
     </ng-template>

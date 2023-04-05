@@ -39,6 +39,10 @@ export class GlobalServiceService {
     );
   }
 
+  logout() {
+    this.fauth.signOut();
+  }
+
 
 
  

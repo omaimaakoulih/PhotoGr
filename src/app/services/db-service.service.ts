@@ -308,6 +308,49 @@ export class DbServiceService {
     }
   }
 
+  getNumberOfLikes(uid: string) : Observable<number[]>{
+
+    let likes: number = 0;
+    let posts : number = 0;
+    const cllectionInstance = collection(this.firestore, 'posts');
+
+    return collectionData(cllectionInstance, {idField: 'id'}).pipe(
+      map((val) => {
+        val.forEach((v) => {
+          if(v['userId'] == uid){
+            likes += v['likes'];
+            posts += 1;
+          }
+        });
+        return [posts, likes];
+      })
+    )
+  }
+
+  getuserPosts(uid:string): Observable<Post[]>{
+    let posts :Post[] = [];
+    let post!:Post;
+    let collectionInstance = collection(this.firestore, 'posts');
+
+    return collectionData(collectionInstance, {idField: 'id'}).pipe(
+      map((val) => {
+        val.forEach((v) => {
+          if(v['userId'] == uid){
+            post = new Post(v['userId'], v['description'], v['date'], v['likes'], v['image']);
+            post.setPostId(v['id']);
+            post.saved = v['saved'];
+            if(!posts.some((s) =>s.postId == post.postId && s.userId == post.userId && s.description == post.description && s.date== post.date && post.likes == s.likes && s.image == post.image)){
+              posts.push(post);
+            }
+
+          }
+        });
+        return posts;
+      })
+    )
+  }
+
+
   
   
   
