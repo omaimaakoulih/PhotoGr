@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'publish',
     loadChildren: () => import('./publish/publish.module').then( m => m.PublishPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   }
 ];
 
