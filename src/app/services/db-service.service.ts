@@ -3,12 +3,15 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, updateDoc } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { finalize, map, Observable, shareReplay, take } from 'rxjs';
+import { finalize, from, map, Observable, shareReplay, switchMap, take, tap } from 'rxjs';
 import { LikeAction } from '../models/likeAction';
 import { Post } from '../models/post';
 import { Comment } from '../models/comment';
 import { UserModel } from '../models/usermodel';
 import { SaveAction } from '../models/saveAction';
+import firebase from 'firebase/compat/app';
+import { FormGroup } from '@angular/forms';
+import { ref, uploadBytes ,Storage, getDownloadURL} from '@angular/fire/storage';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +19,7 @@ export class DbServiceService {
 
   
 
-  constructor(private angularFireAuth:AngularFireAuth, private router:Router, private rout:ActivatedRoute, private toast:ToastController, private firestore:Firestore) { }
+  constructor(private angularFireAuth:AngularFireAuth, private router:Router, private rout:ActivatedRoute, private toast:ToastController, private firestore:Firestore,  private storage:Storage) { }
   
 
 
@@ -348,6 +351,110 @@ export class DbServiceService {
         return posts;
       })
     )
+  }
+
+  getUserbyuid(uid:string): Observable<string>{
+    let userId !:string;
+
+    let collectionInstance = collection(this.firestore, 'user');
+    return collectionData(collectionInstance, {idField: 'id'}).pipe(
+      map((val) => {
+        val.forEach((v) => {
+          if(v['uid'] == uid){
+            userId = v['id'];
+          }
+        });
+        return userId;
+      }), take(1)
+    )
+  }
+
+  async change(user:firebase.User, form:FormGroup, selectedImage:File, ){
+
+    let imageUrl!:string;
+    let updatePassword:boolean = false;
+
+      if(form.value.password == form.value.confPassword){
+        if(form.value.password != '' && form.value.confPassword !=''){
+           user.updatePassword(form.value.password);
+        }
+
+        // the email : 
+        user.updateEmail(form.value.email);
+
+        // the user Image : 
+        if(selectedImage){
+          const storageRef = ref(this.storage,`posts/images/${selectedImage.name}`);
+          const uploadTask = from(uploadBytes(storageRef,selectedImage));
+
+          uploadTask.pipe(
+            
+            switchMap((result) => from(getDownloadURL(result.ref))),
+            tap((url) => {
+              imageUrl = url;
+              user.updateProfile({
+                displayName: form.value.userName,
+                photoURL: url
+              }).then(()=> {
+                console.log("udated !");
+              });
+            })).subscribe();
+        }
+        else{
+          
+          user.updateProfile({
+            displayName: form.value.userName
+          }).then(()=> {
+            console.log("udated !");
+          });
+        }
+        
+        
+        // changer les infos du user dans le document user.
+        this.getUserbyuid(user.uid).subscribe((val) => {
+          if(imageUrl){
+          updateDoc(doc(this.firestore, 'user', val), { email: form.value.email, userName: form.value.userName, image: imageUrl}).then(() => {
+            console.log("the document user is modified  !");
+          }).catch((error) => {
+            console.log(error);
+          })}
+          else{
+            updateDoc(doc(this.firestore, 'user', val), { email: form.value.email, userName: form.value.userName}).then(() => {
+              console.log("the document user is modified !");
+            }).catch((error) => {
+              console.log(error);
+            })
+          }
+          
+        })
+
+        const toast =  await this.toast.create({
+          message: 'successfully updated !',
+          duration: 1500,
+          position: 'top'
+        });
+    
+        (await toast).present();
+        
+        
+      }
+      else{
+       
+              const toast =  await this.toast.create({
+                message: 'invalid password !',
+                duration: 1500,
+                position: 'bottom'
+              });
+          
+              (await toast).present();
+          
+        
+      }
+
+    
+    
+      
+    
   }
 
 

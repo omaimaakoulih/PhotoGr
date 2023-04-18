@@ -55,5 +55,8 @@ export class ProfilePage implements OnInit {
     this.auth.signOut();
     this.router.navigate(['/login']);
   }
+  settings(){
+    this.router.navigate(['/settings']);
+  }
 
 }

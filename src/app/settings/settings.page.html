@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="chevron-back-outline"></ion-icon>
+    <ion-icon name="chevron-back-outline" (click)="backButton()"></ion-icon>
+   
     <ion-title>settings</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,30 +10,31 @@
   <div class="imag">
     <div class="in">
       <img src="../../assets/image1.jpg" alt="">
-      <button><ion-icon name="pencil-outline"></ion-icon></button>
+      <button (click)="inputImage.click()"><ion-icon name="pencil-outline" ></ion-icon></button>
+      <input type="file" #inputImage hidden (change)="onSelectImage($event)" [(ngModel)]='image' [ngModelOptions]="{standalone: true}"/>
     </div>
    
   </div>
-  <form class="p-4 p-md-5 ">
+  <form class="p-4 p-md-5 " [formGroup]="settingForm" (ngSubmit)="onChange()">
     <div class="mb-3">
       <label for="email">Email</label>
-      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email" name="email" class="form-control" id="floatingInputemail" placeholder="name@example.com" formControlName="email"/>
      
     </div>
     <div class="mb-3">
       <label for="username">User Name</label>
-      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="User Name">
+      <input type="text" name="username" class="form-control" id="floatingInputname" placeholder="User Name" formControlName = "userName"/>
      
     </div>
     
     <div class="mb-3">
       <label for="password">New Password</label>
-      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password"/>
     
     </div>
     <div class="mb-3">
       <label for="confPassword">Confirm Password</label>
-      <input type="password" name="confPassword" class="form-control" id="floatingPassword" placeholder="Confirm Password">
+      <input type="password" name="confPassword" class="form-control" id="floatingPasswordconf" placeholder="Confirm Password" formControlName="confPassword"/>
     
     </div>
     
