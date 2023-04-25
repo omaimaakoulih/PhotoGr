@@ -1,34 +1,37 @@
 
 <ion-content>
   <div class="logo">
-    <img src="../../assets/logo.png" alt="">
+    <img src="../../assets/asset2.svg" alt="">
   </div>
 
   <div class="form">
-    
-    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp('top')">
-      <h1 style="text-align: center; color: #b8b6b6;">Sign up</h1>
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatinguserName" placeholder="user name" formControlName="userName">
-        <label for="floatingInput">User name</label>
+    <h2>SignUp</h2>
+    <form class="p-4 p-md-5 " [formGroup]="signUpForm" (ngSubmit)="onSignUp('top')">
+      
+      <div class="mb-3">
+        <label for="username">User Name</label>
+        <input type="text" name="username" class="form-control" id="floatingInputname" placeholder="User Name" formControlName = "userName"/>
+       
       </div>
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
-        <label for="floatingInput">Email address</label>
-        
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" id="floatingInputemail" placeholder="name@example.com" formControlName="email"/>
+       
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
-        <label for="floatingPassword">Password</label>
-        
+      <div class="mb-3">
+        <label for="password">New Password</label>
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password"/>
+      
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingconfPassword" placeholder="confirm Password" formControlName="confirmPassword">
-        <label for="floatingPassword">Confirm Password</label>
-        
+      <div class="mb-3">
+        <label for="confPassword">Confirm Password</label>
+        <input type="password" name="confPassword" class="form-control" id="floatingPasswordconf" placeholder="Confirm Password" formControlName="confirmPassword"/>
+      
       </div>
-
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+      
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
+      <hr class="my-4">
+     
     </form>
   </div>
   <div class="signIn">

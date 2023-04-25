@@ -1,24 +1,29 @@
 
 <ion-content>
   <div class="logo">
-    <img src="../../assets/logo.png" alt="">
+    <img src="../../assets/asset2.svg" alt="">
   </div>
-
+   
   <div class="form">
-    
-    <form [formGroup]="loginForm" (ngSubmit)="onSingnIn()">
-      <h1 style="text-align: center; color: #b8b6b6;">Sign in</h1>
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
-        <label for="floatingInput">Email address</label>
-        
+    <h1>SignIn</h1>
+    <form class="p-4 p-md-5 " [formGroup]="loginForm" (ngSubmit)="onSingnIn()">
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" id="floatingInputemail" placeholder="name@example.com" formControlName="email"/>
+       
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
-        <label for="floatingPassword">Password</label>
-        
+      
+      
+      <div class="mb-3">
+        <label for="password">New Password</label>
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password"/>
+      
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      
+      
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
+      <hr class="my-4">
+     
     </form>
   </div>
   <div class="signUp">
