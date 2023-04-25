@@ -8,6 +8,7 @@ import firebase from 'firebase/compat/app';
 import { Post } from '../models/post';
 import { DbServiceService } from '../services/db-service.service';
 import { switchMap } from 'rxjs/operators';
+import { UserModel } from '../models/usermodel';
 
 @Component({
   selector: 'app-comments',
@@ -19,6 +20,7 @@ export class CommentsPage implements OnInit {
   comment!:string;
   comments!:Comment[];
   post!:Post;
+  userPost!:UserModel;
   user!:firebase.User;
   private sub:any;
   progress =0;
@@ -36,6 +38,10 @@ export class CommentsPage implements OnInit {
       switchMap((param) => {
         this.post = JSON.parse(param['post']);
         console.log(this.post);
+        this.dbService.getUserById(this.post.userId).subscribe((u) => {
+          this.userPost = u;
+          console.log(this.userPost);
+        })
         return this.dbService.getPostComments(this.post.postId);
       })
     ).subscribe((data) => {
@@ -51,7 +57,7 @@ export class CommentsPage implements OnInit {
     this.sub.unsubscribe();
   }
 
-  // use the post id as onSendComment() method argument 
+  // use the post id as onCommentPost() method argument 
    async onSendComment(){
     if(this.comment){
      this.dbService.onCommentPost(this.comment,this.post.postId, this.user.uid);
@@ -59,6 +65,7 @@ export class CommentsPage implements OnInit {
       this.progress += 0.01;
       if (this.progress > 1) {
         this.platform.ready().then(()=>{
+          console.log("reload");
           window.location.reload();
         })
       }

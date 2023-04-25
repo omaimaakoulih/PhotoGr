@@ -8,6 +8,7 @@ import { CommentsPageRoutingModule } from './comments-routing.module';
 
 import { CommentsPage } from './comments.page';
 import { DateTimePipeMod } from '../pipes/dateTimePipemod.module';
+import { UserCommentComponent } from '../user-comment/user-comment.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { DateTimePipeMod } from '../pipes/dateTimePipemod.module';
     CommentsPageRoutingModule,
     DateTimePipeMod
   ],
-  declarations: [CommentsPage]
+  declarations: [CommentsPage, UserCommentComponent]
 })
 export class CommentsPageModule {}

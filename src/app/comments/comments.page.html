@@ -8,20 +8,14 @@
 
 <ion-content>
   <div class="description">
-    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    <img *ngIf="userPost" alt="Silhouette of a person's head" [src]="userPost.image" />
     <div class="text">
-      <p class="userName">user Name <span class="postDate">{{post.date | transDate}}</span></p>
+      <p class="userName" *ngIf="userPost">{{userPost.userName}} <span class="postDate">{{post.date | transDate}}</span></p>
       <p>{{post.description}} <br/>Dolor est, quisquam cum sit illo exercitationem ex odio odit perspiciatis itaque repellendus obcaecati molestiae doloremque tenetur voluptatum molestias velit aperiam, <br/>beatae dolorum fugiat? Dolorem, cupiditate tempore repudiandae culpa officia minus rerum, excepturi,<br/> praesentium voluptates est atque nostrum omnis. Velit possimus sequi hic facilis ea tempora, eius, placeat ratione accusamus deserunt perspiciatis, quod quisquam esse. Consequuntur, eum eaque deleniti provident autem veritatis iste, doloribus quo mollitia, laudantium fugit corporis libero saepe? Ratione atque quaerat sapiente voluptatibus voluptate quo illum saepe maiores excepturi sunt sed, facere incidunt nihil!</p>
     </div>
   </div>
   
-  <div class="comments" *ngFor="let c of comments">
-    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-    <div class="text">
-      <p>user Name <span style="color:#474A56">{{c.date | transDate}}</span></p>
-      <p>{{c.text}}</p>
-    </div>
-  </div>
+  <app-user-comment  *ngFor="let c of comments" [c] = "c"></app-user-comment>
 
 </ion-content>
 <ion-footer>
